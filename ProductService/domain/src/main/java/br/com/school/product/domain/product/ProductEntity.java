@@ -3,30 +3,40 @@ package br.com.school.product.domain.product;
 import br.com.school.product.domain.exception.NotificationException;
 import br.com.school.product.domain.validation.Error;
 import br.com.school.product.domain.validation.NotificationValidation;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
+@Entity
+@Table(name = "product")
+@NoArgsConstructor
 public class ProductEntity {
+
+    @Id
     private String id;
-    private String name;
     private String skuCode;
+    private String name;
 
     private BigDecimal stock;
     private BigDecimal price;
     private BigDecimal cost;
 
     public ProductEntity(String id,
-                         String name,
                          String skuCode,
+                         String name,
                          BigDecimal stock,
                          BigDecimal price,
                          BigDecimal cost) {
         this.id = id;
-        this.name = name;
         this.skuCode = skuCode;
+        this.name = name;
         this.stock = stock;
         this.price = price;
         this.cost = cost;
@@ -34,23 +44,23 @@ public class ProductEntity {
         selfValidate();
     }
 
-    public static ProductEntity create(final String name,
-                                       final String skuCode,
+    public static ProductEntity create(final String skuCode,
+                                       final String name,
                                        final BigDecimal stock,
                                        final BigDecimal price,
                                        final BigDecimal cost) {
         final var id = UUID.randomUUID().toString();
-        return new ProductEntity(id, name, skuCode, stock, price, cost);
+        return new ProductEntity(id, skuCode, name, stock, price, cost);
     }
 
-    public void update(final String name,
-                       final String skuCode,
+    public void update(final String skuCode,
+                       final String name,
                        final BigDecimal stock,
                        final BigDecimal price,
                        final BigDecimal cost) {
         this.id = id;
-        this.name = name;
         this.skuCode = skuCode;
+        this.name = name;
         this.stock = stock;
         this.price = price;
         this.cost = cost;
@@ -77,7 +87,7 @@ public class ProductEntity {
             notification.append(new Error("Cost must be greater then zero"));
         }
 
-        if (price.compareTo(cost) < 0) {
+        if (price.compareTo(cost) <= 0) {
             notification.append(new Error("Price must be greater then zero"));
         }
 

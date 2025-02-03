@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/ProductService.api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api/ProductService.api.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/ProductService.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/ProductService.domain.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/ProductService.domain.test.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/ProductService.domain.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Rest-API.iml" filepath="$PROJECT_DIR$/.idea/Rest-API.iml" />
+    </modules>
+  </component>
+</project>
