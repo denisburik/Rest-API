@@ -20,7 +20,7 @@ class ProductEntityTest {
         final var expectedCost = BigDecimal.valueOf(20);
         final var expectedPrice = BigDecimal.valueOf(30);
 
-        final var product = ProductEntity.create(expectedName, expectedSku, expectedStock, expectedPrice, expectedCost);
+        final var product = ProductEntity.create(expectedSku, expectedName, expectedStock, expectedPrice, expectedCost);
         Assertions.assertNotNull(product.getId());
         Assertions.assertEquals(expectedSku, product.getSkuCode());
         Assertions.assertEquals(expectedName, product.getName());
@@ -53,7 +53,7 @@ class ProductEntityTest {
                                      BigDecimal cost,
                                      String message) {
         final var expectedError = Assertions.assertThrows(NotificationException.class,
-            () -> ProductEntity.create(name, sku, stock, price, cost));
+            () -> ProductEntity.create(sku, name, stock, price, cost));
 
         Assertions.assertEquals(message, expectedError.getErrors().get(0).message());
     }
@@ -66,12 +66,12 @@ class ProductEntityTest {
         final var expectedCost = BigDecimal.valueOf(20);
         final var expectedPrice = BigDecimal.valueOf(30);
 
-        final var product = ProductEntity.create( "Name Test test", "123", BigDecimal.valueOf(40),
+        final var product = ProductEntity.create( "123", "Name Test test", BigDecimal.valueOf(40),
                 BigDecimal.valueOf(200), BigDecimal.valueOf(100));
 
         final var id = product.getId();
 
-        product.update(expectedName, expectedSku, expectedStock, expectedPrice, expectedCost);
+        product.update(expectedSku, expectedName, expectedStock, expectedPrice, expectedCost);
 
         Assertions.assertNotNull(product.getId());
         Assertions.assertEquals(id, product.getId());
@@ -91,11 +91,11 @@ class ProductEntityTest {
                                      BigDecimal cost,
                                      String message) {
 
-        final var product = ProductEntity.create( "Name Test test", "123", BigDecimal.valueOf(40),
+        final var product = ProductEntity.create( "123", "Name Test test",  BigDecimal.valueOf(40),
                 BigDecimal.valueOf(200), BigDecimal.valueOf(100));
 
         final var expectedError = Assertions.assertThrows(NotificationException.class,
-                () -> product.update(name, sku, stock, price, cost));
+                () -> product.update(sku, name, stock, price, cost));
 
         Assertions.assertEquals(message, expectedError.getErrors().get(0).message());
     }

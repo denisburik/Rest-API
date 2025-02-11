@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: product_db
-      MYSQL_USER: user
+      MYSQL_USER: userjava
       MYSQL_PASSWORD: 123456
     ports:
       - "3306:3306"
